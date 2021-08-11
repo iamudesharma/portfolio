@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-
 import 'package:portfolio_wec/colors.dart';
 import 'package:portfolio_wec/controller.dart';
 import 'package:portfolio_wec/responsive.dart';
 import 'package:url_launcher/link.dart';
-// import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,8 +23,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         textTheme: GoogleFonts.aBeeZeeTextTheme(),
       ),
-      title: 'Material App',
-      home: Scaffold(body: SafeArea(child: Home())),
+      title: 'Portfolio',
+      home: Scaffold(
+        body: SafeArea(
+          child: Home(),
+        ),
+      ),
     );
   }
 }
@@ -119,11 +121,13 @@ class _HomeState extends State<Home> {
                             scheme: "mailto",
                             path: 'udesh9506@outlook.com',
                           ),
-                          target: LinkTarget.defaultTarget,
+                          target: LinkTarget.self,
                           builder: (contexr, ontapes) => Obx(
                             () => UrlIcons(
                               key: ValueKey('mail'),
-                              ontaps: ontapes,
+                              ontaps: () async {
+                                await ontapes!.call();
+                              },
                               iconData: Icons.mail,
                               isHover: controller.isHover1.value,
                               onEnter: (event) {
@@ -143,22 +147,24 @@ class _HomeState extends State<Home> {
                           uri: Uri.parse(
                             'https://github.com/udeshsharma',
                           ),
-                          target: LinkTarget.defaultTarget,
-                          builder: (contexr, ontapes) => Obx(
-                            () => UrlIcons(
-                              key: ValueKey('gits'),
-                              ontaps: ontapes,
-                              iconData: FontAwesomeIcons.github,
-                              isHover: controller.isHover3.value,
-                              onEnter: (event) {
-                                controller.isHover3.value = true;
-                              },
-                              onHover: (event) {
-                                controller.isHover3.value = true;
-                              },
-                              onExit: (event) {
-                                controller.isHover3.value = false;
-                              },
+                          target: LinkTarget.blank,
+                          builder: (contexr, ontapes) => GestureDetector(
+                            onTap: ontapes,
+                            child: Obx(
+                              () => UrlIcons(
+                                ontaps: ontapes,
+                                iconData: FontAwesomeIcons.github,
+                                isHover: controller.isHover3.value,
+                                onEnter: (event) {
+                                  controller.isHover3.value = true;
+                                },
+                                onHover: (event) {
+                                  controller.isHover3.value = true;
+                                },
+                                onExit: (event) {
+                                  controller.isHover3.value = false;
+                                },
+                              ),
                             ),
                           ),
                         ),
@@ -191,7 +197,7 @@ class _HomeState extends State<Home> {
                         Link(
                           uri: Uri.parse(
                               'https://instagram.com/iamudesharma?utm_medium=copy_link'),
-                          target: LinkTarget.defaultTarget,
+                          target: LinkTarget.self,
                           builder: (contexr, ontapes) => Obx(
                             () => UrlIcons(
                               key: ValueKey('insta'),
@@ -274,35 +280,36 @@ class UrlIcons extends GetView<HoverController> {
     return GestureDetector(
       onTap: ontaps,
       child: MouseRegion(
-          onHover: (event) {
-            onHover(event);
-          },
-          onEnter: (event) {
-            onEnter(event);
-          },
-          onExit: (event) {
-            onExit(event);
-          },
-          child: Icon(
-            iconData,
-            size: 30,
-            color: isHover != true ? Colors.white : Colors.black,
-          )
-              .box
-              .color(
-                isHover != true ? Colorse.forgroundColor : Colorse.textcolor,
-              )
-              .border(
-                width: 1.0,
-                color: Colors.white,
-              )
-              .p16
-              .roundedFull
-              .shadow3xl
-              .margin(
-                EdgeInsets.all(5.0),
-              )
-              .makeCentered()),
+        onHover: (event) {
+          onHover(event);
+        },
+        onEnter: (event) {
+          onEnter(event);
+        },
+        onExit: (event) {
+          onExit(event);
+        },
+        child: Icon(
+          iconData,
+          size: 30,
+          color: isHover != true ? Colors.white : Colors.black,
+        )
+            .box
+            .color(
+              isHover != true ? Colorse.forgroundColor : Colorse.textcolor,
+            )
+            .border(
+              width: 1.0,
+              color: Colors.white,
+            )
+            .p16
+            .roundedFull
+            .shadow3xl
+            .margin(
+              EdgeInsets.all(5.0),
+            )
+            .makeCentered(),
+      ),
     );
   }
 }

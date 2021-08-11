@@ -1,0 +1,13 @@
+E:/portfolio_wec/build/windows/runner/Debug/data/icudtl.dat
+E:/portfolio_wec/build/windows/runner/Debug/flutter_windows.dll
+E:/portfolio_wec/build/windows/runner/Debug/url_launcher_windows_plugin.dll
+E:/portfolio_wec/build/windows/runner/Debug/data/flutter_assets/AssetManifest.json
+E:/portfolio_wec/build/windows/runner/Debug/data/flutter_assets/assets/udesh.jpg
+E:/portfolio_wec/build/windows/runner/Debug/data/flutter_assets/FontManifest.json
+E:/portfolio_wec/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+E:/portfolio_wec/build/windows/runner/Debug/data/flutter_assets/kernel_blob.bin
+E:/portfolio_wec/build/windows/runner/Debug/data/flutter_assets/NOTICES
+E:/portfolio_wec/build/windows/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+E:/portfolio_wec/build/windows/runner/Debug/data/flutter_assets/packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf
+E:/portfolio_wec/build/windows/runner/Debug/data/flutter_assets/packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf
+E:/portfolio_wec/build/windows/runner/Debug/data/flutter_assets/packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf

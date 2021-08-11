@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="E:\portfolio_wec\windows\flutter\ephemeral\.plugin_symlinks\url_launcher_windows\windows\url_launcher_plugin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\portfolio_wec\windows\flutter\ephemeral\.plugin_symlinks\url_launcher_windows\windows\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{AEADF91B-1EBC-3FC6-B69A-A4CBCBD4667F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
