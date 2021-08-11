@@ -1,65 +1,278 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+
 import 'package:portfolio_wec/colors.dart';
+import 'package:portfolio_wec/controller.dart';
+import 'package:url_launcher/link.dart';
+// import 'package:url_launcher/url_launcher.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
+  Vx.setPathUrlStrategy();
+  Get.put(HoverController());
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // themeMode: ThemeMode.dark,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        backgroundColor: Colorse.forgroundColor,
-        primaryColor: Colorse.primy,
-
-        scaffoldBackgroundColor: Colorse.forgroundColor,
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return GetMaterialApp(
+      theme: ThemeData.dark().copyWith(
+        textTheme: GoogleFonts.aBeeZeeTextTheme(),
       ),
-      home: MyHomePage(),
+      title: 'Material App',
+      home: Scaffold(body: SafeArea(child: Home())),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final controller = Get.put(HoverController());
+  @override
+  void didChangeDependencies() {
+    controller.cacheImage(context);
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Row(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Expanded(
-                child: Transform.rotate(
-              origin: Offset(0, -1),
-              angle: -3.14 / 14,
-              child: Transform.scale(
-                scale: 1.5,
-                child: Container(
-                  color: Theme.of(context).primaryColor,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                "Dart".text.white.size(40.0).extraBold.make(),
+                50.heightBox,
+                'Hi There 🥺'.text.xl5.capitalize.white.make(),
+                30.heightBox,
+                Text(
+                  "I'm Udesh Sharma",
+                  style: TextStyle(shadows: [
+                    Shadow(
+                      blurRadius: 10,
+                    ),
+                  ]),
+                ).text.size(50).extraBold.fade.white.make(),
+                30.heightBox,
+                SelectableText(
+                  """I’m a Software Developer based in New Delhi, India.
+I specialize in creating high quality websites & 
+webapps made with 💓 of modern web technologies.""",
+                  scrollPhysics: NeverScrollableScrollPhysics(),
+                  style: TextStyle(
+                    // shadows: ,
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
                 ),
-              ),
-            )),
-            Expanded(
-              flex: 3,
-              child: Container(),
+                20.heightBox,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Link(
+                      uri: Uri(
+                        scheme: "mailto",
+                        path: 'udesh9506@outlook.com',
+                      ),
+                      target: LinkTarget.defaultTarget,
+                      builder: (contexr, ontapes) => Obx(
+                        () => UrlIcons(
+                          key: ValueKey('mail'),
+                          ontaps: ontapes,
+                          iconData: Icons.mail,
+                          isHover: controller.isHover1.value,
+                          onEnter: (event) {
+                            controller.isHover1.value = true;
+                          },
+                          onHover: (event) {
+                            controller.isHover1.value = true;
+                          },
+                          onExit: (event) {
+                            controller.isHover1.value = false;
+                          },
+                        ),
+                      ),
+                    ),
+                    20.widthBox,
+                    Link(
+                      uri: Uri.parse(
+                        'https://github.com/udeshsharma',
+                      ),
+                      target: LinkTarget.defaultTarget,
+                      builder: (contexr, ontapes) => Obx(
+                        () => UrlIcons(
+                          key: ValueKey('gits'),
+                          ontaps: ontapes,
+                          iconData: FontAwesomeIcons.github,
+                          isHover: controller.isHover3.value,
+                          onEnter: (event) {
+                            controller.isHover3.value = true;
+                          },
+                          onHover: (event) {
+                            controller.isHover3.value = true;
+                          },
+                          onExit: (event) {
+                            controller.isHover3.value = false;
+                          },
+                        ),
+                      ),
+                    ),
+                    20.widthBox,
+                    Link(
+                      uri: Uri.parse(
+                        '',
+                      ),
+                      target: LinkTarget.blank,
+                      builder: (contexr, ontapes) => Obx(
+                        () => UrlIcons(
+                          ontaps: ontapes,
+                          key: ValueKey('mediumM'),
+                          iconData: FontAwesomeIcons.mediumM,
+                          isHover: controller.isHover2.value,
+                          onEnter: (event) {
+                            controller.isHover2.value = true;
+                          },
+                          onHover: (event) {
+                            controller.isHover2.value = true;
+                          },
+                          onExit: (event) {
+                            controller.isHover2.value = false;
+                          },
+                        ),
+                      ),
+                    ),
+                    20.widthBox,
+                    Link(
+                      uri: Uri.parse(
+                          'https://instagram.com/iamudesharma?utm_medium=copy_link'),
+                      target: LinkTarget.defaultTarget,
+                      builder: (contexr, ontapes) => Obx(
+                        () => UrlIcons(
+                          key: ValueKey('insta'),
+                          ontaps: ontapes,
+                          iconData: FontAwesomeIcons.instagram,
+                          isHover: controller.isHover4.value,
+                          onEnter: (event) {
+                            controller.isHover4.value = true;
+                          },
+                          onHover: (event) {
+                            controller.isHover4.value = true;
+                          },
+                          onExit: (event) {
+                            controller.isHover4.value = false;
+                          },
+                        ),
+                      ),
+                    ),
+                    20.widthBox,
+                    Link(
+                      uri: Uri.parse('https://twitter.com/iamudesharma'),
+                      target: LinkTarget.blank,
+                      builder: (contexr, ontapes) => Obx(
+                        () => UrlIcons(
+                          key: ValueKey('twitter'),
+                          ontaps: ontapes,
+                          iconData: FontAwesomeIcons.twitter,
+                          isHover: controller.isHover5.value,
+                          onEnter: (event) {
+                            controller.isHover5.value = true;
+                          },
+                          onHover: (event) {
+                            controller.isHover5.value = true;
+                          },
+                          onExit: (event) {
+                            controller.isHover5.value = false;
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.3,
+              height: 600,
+              child: controller.image,
+            )
           ],
-        ),
-      ),
+        )
+      ],
+    );
+  }
+}
+
+class UrlIcons extends GetView<HoverController> {
+  UrlIcons({
+    Key? key,
+    this.isHover,
+    required this.onHover,
+    required this.onEnter,
+    required this.onExit,
+    this.ontaps,
+    this.iconData,
+  }) : super(key: key);
+
+  late bool? isHover;
+  late IconData? iconData;
+  final Function(PointerHoverEvent event) onHover;
+  final Function(PointerEnterEvent event) onEnter;
+  final Function(PointerExitEvent event) onExit;
+  // final Void Function()? onTaps;
+  Future<void> Function()? ontaps;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: ontaps,
+      child: MouseRegion(
+          onHover: (event) {
+            onHover(event);
+          },
+          onEnter: (event) {
+            onEnter(event);
+          },
+          onExit: (event) {
+            onExit(event);
+          },
+          child: Icon(
+            iconData,
+            size: 30,
+            color: isHover != true ? Colors.white : Colors.black,
+          )
+              .box
+              .color(
+                isHover != true ? Colorse.forgroundColor : Colorse.textcolor,
+              )
+              .border(
+                width: 1.0,
+                color: Colors.white,
+              )
+              .p16
+              .roundedFull
+              .shadow3xl
+              .margin(
+                EdgeInsets.all(5.0),
+              )
+              .makeCentered()),
     );
   }
 }
