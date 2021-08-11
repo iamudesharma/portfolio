@@ -47,3 +47,5 @@ app.*.map.json
 /android/
 /windows/
 /ios/
+/build/0a3ecb36aad4a1d2c27224dd2971b841/
+/build/windows/
