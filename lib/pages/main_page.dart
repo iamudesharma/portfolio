@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio_wec/controller/hover_controller.dart';
 import 'package:portfolio_wec/responsive.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import '../widgets/url_widgets.dart';
+import 'about/about.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -55,15 +55,27 @@ class MyPage extends StatelessWidget {
             child: Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SelectableText(
-                    "Whats I Do",
-                    style: Theme.of(context).textTheme.headline5?.copyWith(
-                          color: Colors.white,
-                        ),
-                  ),
-                  if (Responsive.isMobile(context)) WhatIDoCardColumn(),
+                  SelectableText("Whats I Do",
+                      style: Theme.of(context).textTheme.headline5),
+                  if (Responsive.isMobile(context))
+                    Column(
+                      children: [
+                        WhatIDoCardColumn(),
+                        WhatIDoCardColumn(),
+                        WhatIDoCardColumn(),
+                      ],
+                    ),
+                  if (!Responsive.isMobile(context))
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        WhatIDoCardRow(),
+                        WhatIDoCardRow(),
+                        WhatIDoCardRow(),
+                      ],
+                    ),
                 ],
               ),
             ),
@@ -71,8 +83,8 @@ class MyPage extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Container(
-              color: Colors.black,
-            ),
+                decoration: BoxDecoration(color: Colors.black),
+                child: AboutPage()),
           ),
         ],
       ),
@@ -238,42 +250,96 @@ class WhatIDoCardColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      // mainAxisSize: MainAxisSize.min,
+    return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
+        Obx(
+          () => UrlIcons(
+            key: ValueKey('mail'),
+            ontaps: () async {},
+            iconData: Icons.mail,
+            isHover: controller.isHover1.value,
+            onEnter: (event) {
+              controller.isHover1.value = true;
+            },
+            onHover: (event) {
+              controller.isHover1.value = true;
+            },
+            onExit: (event) {
+              controller.isHover1.value = false;
+            },
+          ),
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          // mainAxisSize: MainAxisSize.min,
           children: [
-            Obx(
-              () => UrlIcons(
-                key: ValueKey('mail'),
-                ontaps: () async {},
-                iconData: Icons.mail,
-                isHover: controller.isHover1.value,
-                onEnter: (event) {
-                  controller.isHover1.value = true;
-                },
-                onHover: (event) {
-                  controller.isHover1.value = true;
-                },
-                onExit: (event) {
-                  controller.isHover1.value = false;
-                },
-              ),
+            Text(
+              "Resonse",
+              style: Theme.of(context).textTheme.headline6,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              // mainAxisSize: MainAxisSize.min,
-              children: [
-                Text("Resonse"),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: SelectableText(
-                    "Lavish CSS Template is designed by templatemo. Download, edit and use this layout.",
-                  ),
-                )
-              ],
+            SizedBox(
+              height: 5,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: SelectableText(
+                "Lavish CSS Template is designed by templatemo. Download, edit and use this layout.",
+              ),
+            )
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class WhatIDoCardRow extends StatelessWidget {
+  WhatIDoCardRow({Key? key}) : super(key: key);
+  final controller = Get.put(HoverController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Obx(
+          () => UrlIcons(
+            key: ValueKey('mail'),
+            ontaps: () async {},
+            iconData: Icons.mail,
+            isHover: controller.isHover1.value,
+            onEnter: (event) {
+              controller.isHover1.value = true;
+            },
+            onHover: (event) {
+              controller.isHover1.value = true;
+            },
+            onExit: (event) {
+              controller.isHover1.value = false;
+            },
+          ),
+        ),
+        SizedBox(width: 10),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          // mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Resonse",
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            SizedBox(height: 5),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.24,
+              child: SelectableText(
+                "Lavish CSS Template is designed by templatemo. Download, edit and use this layout.",
+              ),
             )
           ],
         )

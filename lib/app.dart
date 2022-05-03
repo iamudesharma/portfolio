@@ -7,8 +7,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: ThemeData.dark().copyWith(
-        textTheme: GoogleFonts.aBeeZeeTextTheme(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.pink,
+          brightness: Brightness.dark,
+        ),
+       fontFamily: GoogleFonts.aBeeZee().fontFamily,
       ),
       title: 'Portfolio',
       home: Scaffold(
