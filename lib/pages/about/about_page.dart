@@ -9,6 +9,7 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (Responsive.isMobile(context)) {
       return Column(
+        // mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -21,7 +22,6 @@ class AboutPage extends StatelessWidget {
       );
     } else {
       return Row(
-        // crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           DescripitionWidget(),

@@ -17,7 +17,7 @@ class DescripitionWidget extends StatelessWidget {
               ),
         ),
         SizedBox(
-          height: 10,
+          height: 5,
         ),
         Text(
           "Flutter Developer",
@@ -26,7 +26,7 @@ class DescripitionWidget extends StatelessWidget {
               ),
         ),
         SizedBox(
-          height: 10,
+          height: 5,
         ),
         SizedBox(
           width: Responsive.isMobile(context)

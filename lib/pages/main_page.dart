@@ -37,8 +37,36 @@ class _MainPageState extends State<MainPage> {
     ),
     MyPage(),
     ProfilePage(),
-    Center(child: Text('Page 1')),
+    ContactPage(),
   ];
+}
+
+class ContactPage extends StatelessWidget {
+  const ContactPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SelectableText("Whats I Do",
+              style: Theme.of(context).textTheme.headline5),
+          Row(
+            children: [
+              CircleAvatar(
+                
+                child: Icon(Icons.phone),
+              ),
+              Text(
+                "+919506942827",
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
 }
 
 class MyPage extends StatelessWidget {
@@ -81,10 +109,10 @@ class MyPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 1,
             child: Container(
-                decoration: BoxDecoration(color: Colors.black),
-                child: AboutPage()),
+              decoration: BoxDecoration(color: Colors.black),
+              child: AboutPage(),
+            ),
           ),
         ],
       ),

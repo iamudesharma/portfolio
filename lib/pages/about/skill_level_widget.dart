@@ -64,50 +64,68 @@ class _SkillLevel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "$title",
-          style: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 1.5),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Stack(
-          children: [
-            Container(
-              width: width,
-              height: 5,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Colors.white,
-              ),
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "$title",
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.5),
+                ),
+                Text(
+                  "$skillLevel%",
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.5,
+                  ),
+                ),
+              ],
             ),
-            Container(
-              width: width * skillLevel * 0.01,
-              height: 5,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Colors.pink,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          width: 5,
-        ),
-        Text(
-          "$skillLevel%",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1.5,
           ),
-        ),
-      ],
+          SizedBox(
+            width: width,
+            child: Stack(
+              fit: StackFit.loose,
+              children: [
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    width: width,
+                    height: 5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    width: width * skillLevel * 0.01,
+                    height: 5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.pink,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
